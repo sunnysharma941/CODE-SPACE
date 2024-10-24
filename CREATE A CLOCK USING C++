@@ -1,0 +1,40 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+int main()
+{
+    int hr, min, sec;
+
+    cout << " Enter the hours minutes second in given format i.e. HRS : MIN : SEC =  " << endl;
+    cin >> hr >> min >> sec;
+
+    while (true)
+    {
+
+        while (hr < 24)
+        {
+
+            while (min < 60)
+            {
+
+                while (sec < 60)
+                {
+                    Sleep(1000);
+                    system("cls");
+                    cout << "" << hr << " : " << min << " : " << sec << endl;
+                    sec++;
+                }
+
+                min++;
+                sec = 0;
+            }
+
+            hr++;
+            min = 0;
+        }
+
+        hr = 0;
+    }
+
+    return 0;
+}

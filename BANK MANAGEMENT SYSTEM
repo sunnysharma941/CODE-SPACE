@@ -1,0 +1,248 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class BANK
+{
+    int total;
+    int acc;
+
+    struct custumer
+    {
+         string name, add;
+        string cont;
+        int amount, age;
+        int acc_no;
+    } custumer[100];
+
+   public:
+    BANK()
+    {
+        total = 0;
+    }
+
+          void choice();
+          void openaccount();
+          void showlist();
+          void update();
+          void search();
+          void transaction();
+};
+
+void BANK ::choice()
+{
+    char option;
+    do
+    {
+        cout << "\n\t\t\tpress 1 : Create a new account" << endl;
+        cout << "\t\t\tpress 2 : View list of custumer" << endl;
+        cout << "\t\t\tpress 3 : Update information of existing account" << endl;
+        cout << "\t\t\tpress 4 : Check details of existing account" << endl;
+        cout << "\t\t\tpress 5 : Transaction for existing account" << endl;
+        cout << "\t\t\tpress 6 : EXIT (WARNING ALL DATA IS FORMAT)!!" << endl;
+        cout << "\t\t\tpress any correct option : ";
+        cin >> option;
+
+        system("cls");
+
+        switch (option)
+        {
+        case '1':
+            BANK ::openaccount();
+            break;
+
+        case '2':
+            BANK ::showlist();
+            break;
+
+        case '3':
+            BANK ::update();
+            break;
+
+        case '4':
+            BANK ::search();
+            break;
+
+        case '5':
+            BANK ::transaction();
+            break;
+
+        default:
+            cout << "\t\t\t\t\tAll data is deleted !!!" << endl;
+            break;
+        }
+    } while (option != '6');
+}
+void BANK ::openaccount()
+{
+    cout << "Enter data of custumer : " << total + 1 << endl;
+    cout << "Enter Name : ";
+    cin.ignore();
+    getline(cin, custumer[total].name);
+    cout << "Enter Address : ";
+    getline(cin, custumer[total].add);
+    cout << "Enter Age : ";
+    cin >> custumer[total].age;
+    cout << "Enter Contect no. : ";
+    cin >> custumer[total].cont;
+    cout << "Enter account number : ";
+    cin >> custumer[total].acc_no;
+    cout << "Enter amount to be deposite : ";
+    cin >> custumer[total].amount;
+
+    if (custumer[total].age >= 18)
+    {
+        cout << "\n\t\t** Congratulation your account has been created **" << endl;
+        cout << "\t\t\tAcc holder Name : " << custumer[total].name << endl;
+        cout << "\t\t\tAge  : " << custumer[total].age << endl;
+        cout << "\t\t\tAddress : " << custumer[total].add << endl;
+        cout << "\t\t\tAccount number : " << custumer[total].acc_no << endl;
+        cout << "\t\t\tContect no. : " << custumer[total].cont << endl;
+        cout << "\t\t\tTotal amount : " << custumer[total].amount << endl;
+    }
+    else
+    {
+        cout << "Sorry you are not eligiable to open account !" << endl;
+    }
+    total++;
+}
+
+void BANK ::showlist()
+{
+    for (int i = 0; i < total; i++)
+    {
+        cout << "\n\t\t\tData of custumer : " << i + 1 << "st" << endl;
+        cout << "\t\t\tAcc holder Name : " << custumer[i].name << endl;
+        cout << "\t\t\tAge  : " << custumer[i].age << endl;
+        cout << "\t\t\tContect no. : " << custumer[i].cont << endl;
+        cout << "\t\t\tAddress : " << custumer[i].add << endl;
+        cout << "\t\t\tAccount number : " << custumer[i].acc_no << endl;
+        cout << "\t\t\tTotal amount : " << custumer[i].amount << endl;
+    }
+}
+
+void BANK ::update()
+{
+    cout << "enter account number of custumer : " << endl;
+    cin >> acc;
+    for (int i = 0; i < total; i++)
+    {
+        if (acc == custumer[i].acc_no)
+        {
+            cout << "\t\t\tyour previous data :" << endl;
+            cout << "\t\t\tAcc holder Name : " << custumer[i].name << endl;
+            cout << "\t\t\tAge  : " << custumer[i].age << endl;
+            cout << "\t\t\tContect no. : " << custumer[i].cont << endl;
+            cout << "\t\t\tAddress : " << custumer[i].add << endl;
+            cout << "\t\t\tAccount number : " << custumer[i].acc_no << endl;
+            cout << "\t\t\tTotal amount : " << custumer[i].amount << endl;
+            cout << "\nEnter new data of custumer : " << endl;
+               cout << "Enter Name : ";
+               cin.ignore();
+               getline(cin, custumer[i].name);
+               cout << "Enter Address : ";
+               getline(cin, custumer[i].add);
+               cout << "Enter Age : ";
+               cin >> custumer[i].age;
+               cout << "Enter Contect no. : ";
+               cin >> custumer[i].cont;
+            cout<<"\n\t\t\tyour data is updated "<<endl;
+            break;
+        }
+        else if (i == total - 1)
+        {
+            cout << "\t\t\t\tInvalid account number !!" << endl;
+        }
+    }
+}
+
+void BANK ::search()
+{
+    int uniqacc;
+    cout <<"Enter the account number of custumer to be searched : " << endl;
+    cin >> uniqacc;
+    for (int i = 0; i < total; i++)
+    {
+        if (uniqacc == custumer[i].acc_no)
+        {
+            cout << "\n\t\t\tData of custumer : " << endl;
+            cout << "\t\t\tAcc holder Name : " << custumer[i].name << endl;
+            cout << "\t\t\tAge  : " << custumer[i].age << endl;
+            cout << "\t\t\tContect no. : " << custumer[i].cont << endl;
+            cout << "\t\t\tAddress : " << custumer[i].add << endl;
+            cout << "\t\t\tAccount number : " << custumer[i].acc_no << endl;
+            cout << "\t\t\tTotal amount : " << custumer[i].amount << endl;
+            break;
+        }
+        else if (i == total - 1)
+        {
+            cout << "\t\t\t\tInvalid account number !!" << endl;
+        }
+    }
+}
+
+void BANK ::transaction()
+{
+    int cash, cashh;
+    int uniqaccc;
+    char opt;
+    cout << "Enter the account number of custumer  : " << endl;
+    cin >> uniqaccc;
+    for (int i = 0; i < total; i++)
+    {
+        if (uniqaccc == custumer[i].acc_no)
+        {
+            cout << "\n\t\t\tData of custumer : " << endl;
+            cout << "\t\t\tAcc holder Name : " << custumer[i].name << endl;
+            cout << "\t\t\tAge  : " << custumer[i].age << endl;
+            cout << "\t\t\tContect no. : " << custumer[i].cont << endl;
+            cout << "\t\t\tAddress : " << custumer[i].add << endl;
+            cout << "\t\t\tAccount number : " << custumer[i].acc_no << endl;
+            cout << "\t\t\tTotal amount : " << custumer[i].amount << endl;
+
+            cout << "\npress 1 : to deposite " << endl;
+            cout << "press 2 : to withdraw " << endl;
+            cout << "\nEnter your choice : ";
+            cin >> opt;
+            switch (opt)
+            {
+            case '1':
+                cout << "how much amount do you want to deposite : ";
+                cin >> cash;
+                custumer[i].amount += cash;
+                cout << "\t\t\tUpdated amount is : " << custumer[i].amount << endl;
+                break;
+            case '2':
+            back:
+                cout << "how much amount do you want to withdraw : ";
+                cin >> cashh;
+                if (cashh > custumer[i].amount)
+                {
+                    cout << "your bank balance is insificient !!" << endl;
+                    goto back;
+                }
+                else
+                {
+                    custumer[i].amount -= cashh;
+                    cout << "\t\t\tUpdated amount is : " << custumer[i].amount << endl;
+                }
+                break;
+
+            default:
+                cout << "\t\t\t\tinvalid account number !!" << endl;
+                break;
+            }
+            break;
+        }
+        else if (i == total - 1)
+        {
+            cout << "\t\t\t\tInvalid account number !!" << endl;
+        }
+    }
+}
+
+int main()
+{
+    BANK B1;
+    B1.choice();
+    return 0;
+}
